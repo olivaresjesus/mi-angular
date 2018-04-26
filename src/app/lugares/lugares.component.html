@@ -1,0 +1,59 @@
+  <agm-map [latitude]="lat" [longitude]="lng">
+    <agm-marker *ngFor="let lugar of lugares" [latitude]="lugar.lat" [longitude]="lugar.lng"></agm-marker>
+  </agm-map>
+
+<div id="cuadrado" [@contenedorAnimable]="state" (@contenedorAnimable.start)="animacionInicia($event)" (@contenedorAnimable.done)="animacionTermina($event)"></div>
+<a class="btn btn-default" (click)="animar()"> Animar! </a>
+<div class="container">
+<h2>Lugares Cercanos</h2>
+  <div class="row">
+    <div class="col-md-6">
+      <a class="btn btn-primary" routerLink="/crear/new">Crear Nuevo Negocio</a>
+      <ul class="list-group">
+        <ng-container *ngFor="let lugar of lugares">
+            
+              <li class="list-group-item">
+                <a routerLink="/crear/{{lugar.id}}">  <h3>{{lugar.nombre | lowercase }}</h3> </a>
+                 <br>
+                 <small> Creado: {{ lugar.id | date:'short' | uppercase}}</small>
+                 <p [innerHtml]="lugar.descripcion | linkifystr"></p>
+              </li>
+
+            <!-- AQUI CAMBIARE EL LINK PARA QUE NO SEA UN SITIO ESPECIFICO SINO TODO EL ENLACE
+            <a routerLink="/crear/{{lugar.id}}"> 
+              <li class="list-group-item">
+                 <p>{{lugar.nombre | lowercase }}</p>
+                 <br>
+                 <small> Creado: {{ lugar.id | date:'short' | uppercase}}</small>
+              </li>
+            </a> 
+          -->
+        </ng-container>
+  <div class="col-md-4" [@contenedorAnimable]="state">
+    <h2>Destacados</h2>
+    <ng-container *ngFor="let lugar of lugares">            
+          <div class="bg-danger padding" *ngIf="lugar.plan == 'pagado'">
+            <a routerLink="/crear/{{lugar.id}}">  <h3>{{lugar.nombre | lowercase }}</h3> </a>
+             <br>
+             <small> Creado: {{ lugar.id | date:'short' | uppercase}}</small>
+             <p [innerHtml]="lugar.descripcion | linkifystr"></p>
+          </div>
+    </ng-container>
+  </div>
+
+<!--
+        Este lo utilizo antes de agregar la funcion de poder editar los lugares, este redireccionaba directamente al detalle de cada uno de los lugares registrados, tambien tiene todavia (que se quitó en la que se dejó ) los parametros que envia
+
+        <ng-container *ngFor="let lugar of lugares">
+            <a routerLink="/detalle/{{lugar.id}}" [queryParams]="{action2:'edit', referer:'google'}"> 
+              <li *ngIf="lugar.edad >= 18" class="list-group-item">
+                 <p>{{lugar.nombre}}</p>
+              </li>
+            </a> 
+        </ng-container>
+-->
+
+      </ul>  
+    </div>
+  </div>
+</div>

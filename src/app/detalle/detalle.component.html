@@ -1,0 +1,17 @@
+<div class="well">
+	<a routerLink="/lugares">Lugar </a> {{ lugar.nombre }}
+</div>
+
+<div class="container">
+
+	<div class="card" style="width: 18rem;">
+	  <div class="card-header">
+	    {{ lugar.nombre }}
+	  </div>
+	  <ul class="list-group list-group-flush">
+	    <li class="list-group-item">{{ lugar.distancia }}</li>
+	    <li class="list-group-item">{{ lugar.description }}</li>
+	    <li class="list-group-item">Plan: {{ lugar.plan }}/li>
+	  </ul>
+	</div>
+</div>
