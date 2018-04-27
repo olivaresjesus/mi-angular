@@ -28,6 +28,10 @@
         <div *ngIf="loggedIn">
           <a (click)="logout()">LogOut</a>
         </div>
+        
+        <div *ngIf="loggedUser">
+          <a >{{ loggedUser }}</a>
+        </div>
   </div>
 </nav>
 
